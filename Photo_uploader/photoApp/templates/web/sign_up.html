@@ -1,0 +1,23 @@
+{% include 'web/base.html' %}
+
+{% block home %}
+    <h3 class='offset-3 fw-bolder mt-2'>Sign Up</h3>
+    <div class="col-md-5 offset-3 mt-4 border border-dark p-2 border-3 alert-dark rounded">
+        <form action="" method='POST'> {% csrf_token %}
+            {% for fm in form %}
+            <label class='fw-bolder'>{{fm.label_tag}}</label>
+            {{fm}} {{fm.errors|striptags}} <br>
+            {% endfor %}
+            <input type="submit" value="submit" class='btn btn-success '>
+        </form>
+    </div>
+    <div class="col-md-4 offset-3 mt-1">
+        {% if messages %}
+        {% for ms in messages %}
+            <div {% if ms.tags %} class="alert bg-success text-light w-0 mt-1 offset-4"   role="alert" {% endif %}>
+                <strong>Done!</strong>{{ms}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock home %}

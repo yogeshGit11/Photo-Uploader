@@ -1,0 +1,40 @@
+{% extends 'web/base.html' %}
+{% include 'web/base.html' %}
+
+
+{% block body %}
+<body class='alert-dark'>
+{% endblock body %}
+
+{% block home %}
+    <h2 class='text-dark fsw-bolder offset-1 mt-1 '>CONTACT US</h2>
+    <div class="row">
+        <div class="col-md-5 offset-1 mt-1 border border-info p-2 border-3 alert-warning shadow">
+            <form action="" method='POST' novalidate> {% csrf_token %}
+                {% for fm in form %}
+                <label class='fw-bold text-danger '>{{fm.label_tag}}</label>
+                 {{fm}} <small class='text-dark fw-bold '>{{fm.errors|striptags}}</small> <br>
+                {% endfor %}
+                <input type="submit" value="Submit" class='btn btn-success mt-2'>
+                <a href={% url 'home' %} class='btn btn-danger mt-2 ms-1'>Cancel</a>
+            </form>
+
+        </div>
+        <div class="col-md-5 offset-1">
+            <h2>Developer Contact:</h2> 
+            <h4>Email:<a href="ymali2434@gmail.com" class='ms-3 h5 fst-italic'>ymali2434@gmail.com</a></h4>
+            <h4>LinkedIn:<a href="www.linkedin.com/in/yogesh-chaudhari-29ab70219" class='ms-3 h5 fst-italic'>www.linkedin.com/in/yogesh-chaudhari-29ab70219</a></h4>
+            
+        </div>
+        {% if messages %}
+            {% for ms in messages %}
+        <div {% if ms.tags %} class="alet alert-{{messages.tags}} mt-2 offset-4" {% endif %} role="alert">
+            <strong class='text-success alert-info'>{{ms}}!</strong> 
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock home %}
+
+

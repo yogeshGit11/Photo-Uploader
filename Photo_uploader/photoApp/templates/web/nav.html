@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light alert-danger">
+  <a class="navbar-brand fw-bolder ms-2" href={% url 'home' %}>PHOTOS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item ">
+        <a class="nav-link text-dark" href={% url 'home' %}>Home</a>
+      </li>
+
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link text-dark" href={% url 'profile' %}>My Profile</a>
+      </li>
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link text-dark" href={% url 'contact' %}>Contact</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-dark" href={% url 'about' %}>About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href={% url 'logout' %}>Logout</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link text-dark" href={% url 'signin' %}>Sign In</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link text-dark" href={% url 'signup' %}>Sign Up</a>
+      </li>
+
+      {% endif %}
+
+
+    </ul>
+  </div>
+</nav>

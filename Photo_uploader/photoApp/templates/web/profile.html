@@ -1,0 +1,54 @@
+{% include 'web/base.html' %}
+
+{% block home %}
+<div class="col-md-4 offset-3 mt-1">
+  {% if messages %}
+  {% for ms in messages %}
+      <div {% if ms.tags %} class="alert bg-success text-light w-0 offset-3"   role="alert" {% endif %}>
+          <strong>{{ms}}{{uname}}</strong>
+      </div>
+  {% endfor %}
+{% endif %}
+</div>
+
+<h3 class='offset-1 fw-bolder mt-2'>MY PROFILE</h3><hr>
+  <div class="row">
+
+    
+
+      <div class="col-md-3">
+        <strong class='offset-4 h5 text-dark fw-bolder'><u>Username:</u></strong><br>
+        <strong class='offset-5 h5 text-danger'><u>{{uname}}</u></strong> <br><br>
+        <strong class='offset-4 text-dark h5'><u>Upload New Photo:</u></strong><br> 
+        <a href={% url 'upload' %} class='btn btn-warning offset-5'>Upload Photo</a>
+      </div>
+
+      <div class="col-md-6">
+        <h4 class='text-danger fst-italic'>Your Uploaded photos:</h4>
+          {% if prof %}
+            {% for ph in prof %}
+              <div class="card  alert-warning shadow mt-2 ">
+                    <div class="card-body">
+                      {% comment %} <h5 class="card-title"><u>Upload by:</u> {{ph.username}}</h5> {% endcomment %}
+                      <p class="card-text text-dark ">{{ph.desc}}</p>
+                      <p class="card-text"><small class="text-muted">{{ph.timedate}}</small></p>
+                    </div>
+                    
+                    <img src="{{ph.pic.url}}" class="w-50 h-200 m-2 shadow" alt="card-img-bottom" />
+                    
+
+                    <form action={% url 'deletepic' ph.id %} method='POST'> {% csrf_token %}
+                      <input type="submit" value="Delete Photo" class='btn btn-danger btn-sm offset-10 mb-1'>
+                    </form>
+                </div>
+             {% endfor %}
+              
+          {% else %}
+                <h3 class='text-dark fw-bold  text-center alert-warning'>NO POST YET</h3>
+          {% endif %}
+          
+      </div>
+
+  </div>
+   
+{% endblock home %}

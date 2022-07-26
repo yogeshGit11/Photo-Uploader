@@ -1,0 +1,32 @@
+{% include 'web/base.html' %}
+
+{% block home %}
+<h2 class='offset-2 text-danger fw-bolder mt-2 h1'>UPLOADED PHOTOS</h2>
+<a href={% url 'upload' %} class='btn btn-outline-dark  offset-2'>Add New</a>
+<div class="row">
+
+    
+
+  <div class="col-md-6 offset-2">
+      {% for ph in prof %}
+      <div class="card  alert-warning shadow mt-4">
+          <div class="card-body">
+            <h5 class="card-title"><u>Upload by:</u> {{ph.username}}</h5>
+            <p class="card-text text-dark ">{{ph.desc}}</p>
+            <p class="card-text"><small class="text-muted">{{ph.timedate}}</small></p>
+          </div>
+          <img src="{{ph.pic.url}}" class="w-50 h-200 m-2 shadow" alt="card-img-bottom" />
+          
+          {% if perms.photoApp.Delete_uppic %}
+            <form action={% url 'deletepic' ph.id %} method='POST'> {% csrf_token %}
+              <input type="submit" value="Delete Photo" class='btn btn-outline-danger btn-sm offset-10 mb-1'>
+            </form>
+          {% endif %}
+          
+        </div>
+      {% endfor %}
+  </div>
+
+</div>
+ 
+{% endblock home %}

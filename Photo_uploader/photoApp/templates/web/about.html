@@ -1,0 +1,26 @@
+{% extends 'web/base.html' %}
+{% include 'web/base.html' %}
+
+{% block body %}
+<body class='alert-warning'>
+{% endblock body %}
+
+{% block home %}
+<div class="row">
+    <div class="col-md-6 mt-2 offset-2">
+        <h2 class=class='text-dark fsw-bolder text-center  mt-1'>ABOUT US</h2>
+
+        <div class="card mt-4">
+            
+            <div class="card-body alert-info shadow">
+              <h4 class="card-title">PHOTO UPLOADER</h4>
+              <p class="card-text">This is Photo uploader website in which you can upload your photos. We provides the uploder profile whose profile is created when he sign up. 
+                Photo or photograph - Anything taken by a camera, digital camera, or photocopier. Picture - A drawing, painting, or artwork created on a computer. Image - Any visual object that's modified or altered by a computer or an imaginary object created using a computer.Definitions of photo: a representation of a person or scene in the form of a print or transparent slide; recorded by a camera on light-sensitive material. synonyms: exposure, photograph, pic, picture.
+              </p>
+              <a href={% url 'home' %} class="btn btn-primary">Go Home</a>
+            </div>
+          </div>
+
+    </div>
+</div>
+{% endblock home %}

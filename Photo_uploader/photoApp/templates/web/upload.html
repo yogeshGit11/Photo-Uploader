@@ -1,0 +1,25 @@
+{% include 'web/base.html' %}
+
+{% block home %}
+<h3 class='offset-4 fw-bolder mt-2'>Upload New Photo</h3>
+<div class="col-md-4 offset-4 mt-4 border border-danger p-2 border-3 alert-info rounded">
+    <form action="" method='POST' novalidate enctype="multipart/form-data">  {% csrf_token %}
+        {% for fm in form %}
+        <label class='fw-bolder'>{{fm.label_tag}}</label>
+        {{fm}} <small class='text-danger fw-bold'>{{fm.errors|striptags}}</small> <br> 
+        {% endfor %}
+        <input type="submit" value="Upload" class='btn btn-success '>
+        <a href={% url 'profile' %} class='btn btn-danger '>Cancel</a>
+    </form>
+</div>
+    <div class="col-md-4 offset-3 mt-1">
+        {% if messages %}
+        {% for ms in messages %}
+            <div {% if ms.tags %} class="alert bg-success text-light w-0 offset-4"   role="alert" {% endif %}>
+                {{ms}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+       
+{% endblock home %}
