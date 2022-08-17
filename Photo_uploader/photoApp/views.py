@@ -6,12 +6,16 @@ from .models import uppic
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import Group
+from django.core.paginator import Paginator
 # Create your views here.
 
 #homepage
 def home(request):
     form = uppic.objects.all()
-    return render(request,'web/home.html',{'prof':form})
+    pagination=Paginator(form,5)
+    page_nums=request.GET.get('page')
+    page_obj=pagination.get_page(page_nums)
+    return render(request,'web/home.html',{'prof':page_obj})
 
 #sign up form
 def signup(request):

@@ -19,10 +19,10 @@ from django.conf import settings
 from photoApp import views
 from django.conf.urls.static import static
 from django.views.static import serve
-from django.conf.urls import url
+from django.urls import re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',views.home,name='home'),
+    path('',views.home,name='home'),
     path('signup/',views.signup,name='signup'),
     path('signin/',views.signin,name='signin'),
     path('logout/',views.logoutuser,name='logout'),
@@ -32,8 +32,8 @@ urlpatterns = [
     path('about/',views.about,name='about'),
     path('contact/',views.contact,name='contact'),
 
-    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
-    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 ]
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,
